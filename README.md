@@ -7,8 +7,14 @@ _The app is created with a portfolio in mind and mimics an online marketplace fo
 
 Tech stack:
 ```
-*Spring-backend, java 17;
-*JPA;
-*MySQL;
-*Thymeleaf;
+Spring-backend, java 17;
+JPA;
+MySQL;
+Thymeleaf;
 ```
+
+
+* Home page:
+
+[homepage](https://ibb.co/Z89FL2M)
+[homepage2](https://ibb.co/x3bxH9q)
