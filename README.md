@@ -16,5 +16,6 @@ Thymeleaf;
 
 * Home page:
 
-![homepage](https://ibb.co/Z89FL2M)
-![homepage2](https://ibb.co/x3bxH9q)
+![home_page_1](https://github.com/StoyanMihaylov99/SoftBuy/assets/107346999/8fa0ed09-7323-47f5-990e-ccb54745c1b9)
+![home_page_2](https://github.com/StoyanMihaylov99/SoftBuy/assets/107346999/92661379-9eb5-4cf1-9a6f-8d5e4d550e8c)
+
