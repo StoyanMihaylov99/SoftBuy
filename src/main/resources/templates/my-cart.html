@@ -34,7 +34,13 @@
             </div>
         </div>
     </section>
-    <ul th:unless="${@loggedUser.getProducts() == null}">
+
+
+    <ul th:if="${cartInfo.size == 0}">
+        <h1 class="company-title">The cart is empty</h1>
+
+    </ul>
+    <ul th:unless="${cartInfo.size == 0}">
     <form th:action="@{cart/check-out}" th:method="GET">
         <input type="hidden" name="_method" value="get"/>
         <button class="add-to-cart-2" type="submit"> check-out</button>
