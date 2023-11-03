@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SoftBuy</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header th:replace="~{/fragments/header.html}">
+</header>
+
+
+<main>
+    <!-- HOME SECTION -->
+    <section class="container section-1">
+        <div class="slogan">
+            <ul th:if="${@loggedUser.id == null}" class="homeslogan">
+                <h1 class="company-title">The software you need, where customers come first</h1>
+
+            </ul>
+
+            <ul th:unless="${@loggedUser.id == null}" class="homeslogan2">
+                <h1 class="company-title">
+                    Welcome, <span th:text="${@loggedUser.getUsername()}"></span></h1>
+            </ul>
+        </div>
+
+        <div class="home-computer-container">
+            <img class="home-computer"
+                 src="https://github.com/r-e-d-ant/Computer-store-website/blob/main/assets/images/home_img.png?raw=true"
+                 alt="a computer in dark with shadow">
+        </div>
+    </section>
+
+    <!-- OFFER SECTION -->
+    <section class="container section-2">
+        <!-- offer 1 -->
+        <div class="offer offer-1">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/most-popular-video-games-of-2022-1642612227.png"
+                 alt="a game banner" class="offer-img offer-1-img">
+            <div class="offer-description offer-desc-1">
+                <h2 class="offer-title">Games Catalog</h2>
+                <p class="offer-hook">Find your next game for any platform.</p>
+                <a th:href="@{/products/games}">
+                    <div class="cart-btn">SEE MORE</div>
+                </a>
+            </div>
+        </div>
+        <!-- offer 2 -->
+        <div class="offer offer-2">
+            <img src="https://i.pcmag.com/imagery/roundups/02HDufdqeRUDu3tl0NnY2qZ-2..v1649351854.jpg"
+                 alt="software image" class="offer-img offer-2-img">
+            <div class="offer-description offer-desc-2">
+                <h2 class="offer-title">Software</h2>
+                <p class="offer-hook">Enjoy some of the most famous and creative software..</p>
+                <a th:href="@{/products/software}">
+                    <div class="cart-btn">SEE MORE</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT SECTION -->
+    <section class="container section-3">
+        <!-- product - 1 -->
+        <div class="product product-1">
+            <img src="https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png"
+                 class="product-img">
+            <span class="product_add_cart"><a href="/products/609bd8fe-6087-11ee-b817-e470b8cb37f6">EXPLORE</a></span>
+        </div>
+        <!-- product - 2 -->
+        <div class="product product-2">
+            <img src="https://static.vecteezy.com/system/resources/previews/018/930/750/non_2x/spotify-app-logo-spotify-icon-transparent-free-png.png"
+                 alt="spotify sub" class="product-img">
+            <span class="product_add_cart"><a href="/products/353a2978-676c-11ee-8768-e470b8cb37f6">EXPLORE</a></span>
+        </div>
+        <!-- product - 3 -->
+        <div class="product product-3">
+            <img src="https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg" alt="disney sub"
+                 class="product-img">
+            <span class="product_add_cart"><a href="/products/ecd73ae4-6085-11ee-b817-e470b8cb37f6">EXPLORE</a></span>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

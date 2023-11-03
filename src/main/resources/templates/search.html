@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <link rel="stylesheet" href="/css/games.css"/>
+</head>
+<body>
+
+<header th:replace="~{/fragments/header.html}">
+</header>
+<div>
+  <h2>Search Results for "[[${keyword}]]":</h2>
+</div>
+<main>
+  <section class="collection-games">
+    <div class="games-wrapper">
+      <div class="game-card" th:each="p : ${findsProduct}">
+        <img th:src="${p.picUrl}" alt="entity-image"/>
+        <h2 th:text="${p.name}"></h2>
+        <p th:text="${p.owner}"></p>
+        <p th:text="${p.price}"></p>
+        <a th:href="@{/products/{id}(id=${p.getId})}"><button class="cart-btn"> Explore</button></a>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

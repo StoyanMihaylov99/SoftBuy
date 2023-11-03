@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscriptions</title>
+    <link rel="stylesheet" href="/css/games.css"/>
+</head>
+<body>
+
+<header th:replace="~{/fragments/header.html}">
+</header>
+
+<main>
+    <!-- HOME SECTION -->
+    <section class="container section-1">
+        <div class="slogan">
+            <h1 class="company-title">Subscriptions for better lifestyle.</h1>
+            <h2 class="company-slogan">
+            </h2>
+        </div>
+        <div class="home-computer-container">
+            <img class="home-computer" src="https://images.pexels.com/photos/4079281/pexels-photo-4079281.jpeg?cs=srgb&dl=pexels-anastasia-shuraeva-4079281.jpg&fm=jpg" alt="a computer in dark with shadow">
+        </div>
+    </section>
+
+    <section class="collection-games">
+        <div class="games-wrapper">
+            <div class="game-card" th:each="s : ${subscriptionCatalog}">
+                <img th:src="${s.picUrl}" alt="entity-image"/>
+                <h2 th:text="${s.name}"></h2>
+                <p th:text="${s.owner}"></p>
+                <p th:text="${s.price}"></p>
+                <a th:href="@{/products/{id}(id=${s.getId})}"><button class="cart-btn"> Explore</button></a>
+            </div>
+        </div>
+    </section>
+
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>
