@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in | SoftBuy</title>
+    <link rel="stylesheet" type="text/css" href="/css/registerStyle.css"/>
+</head>
+<body>
+<div class="form">
+    <form th:method="POST" th:action="@{/user/login}" th:object="${LoginRequest}">
+        <h1>SoftBuy</h1>
+        <h2>Sing in</h2>
+        <div class="input-box">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="userName" placeholder="Username" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+        <div class="input-box">
+            <input type="submit" name="login" value="Sign in">
+        </div>
+        <a href="/user/register">You don't have an account? Just sing up here.</a>
+    </form>
+</div>
+</body>
+</html>

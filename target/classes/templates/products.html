@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products | SoftBuy</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<header th:replace="~{/fragments/header.html}">
+</header>
+
+<main>
+
+  <!-- HOME SECTION -->
+  <section class="container section-1">
+    <div class="slogan">
+      <h1 class="company-title">Choose the catalog you need.</h1>
+      <h2 class="company-slogan">
+      </h2>
+    </div>
+    <div class="home-computer-container">
+      <img class="home-computer" src="https://images.ctfassets.net/rporu91m20dc/5xso50zCdMOsoqo3Rq9XAi/48329a5f4583540f7275b35963266323/banner.jpg" alt="a computer in dark with shadow">
+    </div>
+  </section>
+  <section class="container section-3">
+    <!-- Games -->
+    <a th:href="@{/products/games}">
+      <div class="product product-1">
+      <img src="https://icons.veryicon.com/png/o/miscellaneous/alan-ui/logo-game-controller-2.png" class="product-img">
+      <span class="product_add_cart">GAMES</span>
+    </div></a>
+    <!-- Software -->
+    <a th:href="@{/products/software}">
+    <div class="product product-2">
+      <img src="https://www.pngall.com/wp-content/uploads/5/Computer-Screen-PNG-Download-Image.png" alt="spotify sub" class="product-img">
+      <span class="product_add_cart">SOFTWARE</span>
+    </div></a>
+    <!-- Subscriptions -->
+    <a th:href="@{/products/subscriptions}">
+    <div class="product product-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/4730/4730393.png" alt="disney sub" class="product-img">
+      <span class="product_add_cart">SUBSCRIPTIONS</span>
+    </div>
+    </a>
+  </section>
+
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

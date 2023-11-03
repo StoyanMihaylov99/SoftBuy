@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Learning | SoftBuy</title>
+    <link rel="stylesheet" href="/css/games.css"/>
+</head>
+<body>
+
+<header th:replace="~{/fragments/header.html}">
+</header>
+
+<main>
+    <!-- HOME SECTION -->
+    <section class="container section-1">
+        <div class="slogan">
+            <h1 class="company-title">In need of an education? This is the place for you.</h1>
+            <h2 class="company-slogan">
+            </h2>
+        </div>
+        <div class="home-computer-container">
+            <img class="home-computer" src="https://inno-institute.com/img/ed-tech1553237040995.png" alt="a computer in dark with shadow">
+        </div>
+    </section>
+
+
+    <section class="collection-games">
+        <div class="games-wrapper">
+            <div class="game-card" th:each="g : ${learningCatalog}">
+                <img th:src="${g.picUrl}" alt="entity-image"/>
+                <h2 th:text="${g.name}"></h2>
+                <p th:text="${g.owner}"></p>
+                <p th:text="${g.price}"></p>
+                <a th:href="@{/products/{id}(id=${g.getId})}"><button class="cart-btn"> Explore</button></a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

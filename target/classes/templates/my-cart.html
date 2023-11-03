@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My cart</title>
+    <link rel="stylesheet" type="text/css" href="/css/myCart.css"/>
+</head>
+<body>
+<header>
+    <div class="company-logo">What is in my cart?</div>
+    <ul class="nav-items">
+        <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
+        <li class="nav-item"><a href="/products" class="nav-link">PRODUCTS</a></li>
+        <form method="POST" th:action="@{/user/logout}" class="nav-link">
+            <button type="submit" name="nav-link" class="nav-link">SIGN OUT</button>
+        </form>
+    </ul>
+</header>
+
+<main>
+
+    <section class="collection-games">
+        <div class="games-wrapper">
+            <div class="game-card" th:each="c : ${cartInfo}">
+                <img th:src="${c.picUrl}" alt="entity-image"/>
+                <h2 th:text="${c.name}" class="product-name"></h2>
+                <p th:text="${c.owner}" class="product-owner"></p>
+                <p th:text="${c.price}" class="product-price"></p>
+                <form th:action="@{'cart/'+ ${c.getId}}" th:method="DELETE">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="add-to-cart" type="submit"> Remove</button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <ul th:unless="${@loggedUser.getProducts() == null}">
+    <form th:action="@{cart/check-out}" th:method="GET">
+        <input type="hidden" name="_method" value="get"/>
+        <button class="add-to-cart-2" type="submit"> check-out</button>
+    </form>
+    </ul>
+
+</main>
+
+<footer th:replace="~{fragments/footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Software</title>
+    <link rel="stylesheet" href="/css/games.css"/>
+</head>
+<body>
+
+<header th:replace="~{/fragments/header.html}">
+</header>
+
+<main>
+    <!-- HOME SECTION -->
+    <section class="container section-1">
+        <div class="slogan">
+            <h1 class="company-title">Software to make your life easier.</h1>
+            <h2 class="company-slogan">
+            </h2>
+        </div>
+        <div class="home-computer-container">
+            <img class="home-computer"
+                 src="https://media.istockphoto.com/id/1060749056/photo/business-concepts-with-businessman-holding-magnifying-glass-with-graph-chart-on-computer.jpg?s=612x612&w=0&k=20&c=vDwo7dsxEJ9_tC5d8_juuDLk-kpLyGTOxf8OZFNoZb0="
+                 alt="a computer in dark with shadow">
+        </div>
+    </section>
+
+    <section class="collection-games">
+        <div class="games-wrapper">
+            <div class="game-card" th:each="s : ${softwareCatalog}">
+                <img th:src="${s.picUrl}" alt="entity-image"/>
+                <h2 th:text="${s.name}"></h2>
+                <p th:text="${s.owner}"></p>
+                <p th:text="${s.price}"></p>
+                <a th:href="@{/products/{id}(id=${s.getId})}">
+                    <button class="cart-btn"> Explore</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

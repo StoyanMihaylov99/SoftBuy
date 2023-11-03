@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${titleProduct}]] | SoftBuy</title>
+    <link rel="stylesheet" href="/css/games.css"/>
+</head>
+<body>
+
+<header th:replace="~{/fragments/header.html}">
+</header>
+
+<main>
+    <!-- HOME SECTION -->
+    <section class="container section-1">
+        <div class="slogan">
+            <h2 class="company-slogan">
+            </h2>
+        </div>
+    </section>
+
+
+    <section class="product-wrapper">
+        <div class="product-info">
+            <img class="product-info-image" th:src="${productInfo.picUrl}"/>
+            <h1 class="product-name" th:text="${productInfo.name}"></h1>
+            <p class="product-owner" th:text="${productInfo.owner}"></p>
+            <p class="product-description" th:text="${productInfo.description}"></p>
+            <h2 class="product-price" th:text="${productInfo.price}"></h2>
+            <ul th:if="${@loggedUser.id == null}" class="nav-items">
+                <a href="/user/register">
+                    <button class="add-to-cart"> Add to cart</button>
+                </a>
+            </ul>
+
+            <ul th:unless="${@loggedUser.id == null}">
+
+                <form th:action="@{${id}}" method="POST" th:object="${productToAdd}">
+
+                    <button class="add-to-cart"> Add to cart</button>
+                </form>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/footer}"></footer>
+
+</body>
+</html>
