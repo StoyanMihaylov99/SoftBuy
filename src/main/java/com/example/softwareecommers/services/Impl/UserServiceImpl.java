@@ -88,6 +88,8 @@ public class UserServiceImpl implements UserService {
         for (Product p : products) {
             productsToShow.add(this.modelMapper.map(p, ProductViewDTO.class));
         }
+
+
         return productsToShow;
     }
 
