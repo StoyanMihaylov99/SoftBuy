@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class HomeController extends BaseController{
 
-    @GetMapping
+    @GetMapping("")
     public ModelAndView getHome() {
         return super.view("index");
     }
