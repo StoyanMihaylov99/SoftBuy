@@ -2,8 +2,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://viaduct.proxy.rlwy.net:22304/railway"
-    username: '${MYSQLUSER}'
-    password: '${MYSQL_ROOT_PASSWORD}'
+    username: root
+    password: A43g1fHbhFBcCfCeEbBDEgbg3fcfDHGf
   servlet:
     multipart:
       max-file-size: 1MB
@@ -24,6 +24,5 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
-server:
-      port: 3306
+
 
