@@ -1,9 +1,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://viaduct.proxy.rlwy.net:22304/railway"
-    username: root
-    password: A43g1fHbhFBcCfCeEbBDEgbg3fcfDHGf
+    url: '${DB_url}'
+    username: '${DB_username}'
+    password: '${DB_password}'
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
