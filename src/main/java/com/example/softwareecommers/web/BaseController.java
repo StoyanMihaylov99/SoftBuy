@@ -1,7 +1,4 @@
 package com.example.softwareecommers.web;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 public class BaseController extends RuntimeException{

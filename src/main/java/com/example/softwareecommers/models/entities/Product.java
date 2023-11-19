@@ -1,12 +1,9 @@
 package com.example.softwareecommers.models.entities;
 
 import com.example.softwareecommers.utils.SoftWareType;
-import com.example.softwareecommers.web.BaseController;
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "products")

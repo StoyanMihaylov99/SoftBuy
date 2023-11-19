@@ -1,7 +1,6 @@
 package com.example.softwareecommers.beans;
 
 import com.example.softwareecommers.models.dtos.ProductViewDTO;
-
 import java.util.Set;
 
 public class LoggedUser {
