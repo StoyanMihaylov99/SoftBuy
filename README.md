@@ -2,9 +2,9 @@
 A personal project for practicing and learning new skills.
 
 
-_The app is created with a portfolio in mind and mimics an online marketplace for software, gaming products, monthly membership gift cards, and some online courses. You can be a customer and make orders, but you need to make a registration first. It's deployed on Microsoft Azure:
+_The app is created with a portfolio in mind and mimics an online marketplace for software, gaming products, monthly membership gift cards, and some online courses. You can be a customer and make orders, but you need to make a registration first. It's deployed on Microsoft Azure:_
 
-https://shorturl.at/bFJQ5_
+https://shorturl.at/bFJQ5
 
 
 Tech stack:
