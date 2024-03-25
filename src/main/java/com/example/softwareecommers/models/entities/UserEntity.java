@@ -1,24 +1,26 @@
 package com.example.softwareecommers.models.entities;
 
+import com.example.softwareecommers.utils.Role;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class UserEntity extends BaseEntity{
+public class UserEntity{
+
+    @Id
+    @GeneratedValue(generator = "uuid-string")
+    @GenericGenerator(name = "uuid-string",
+            strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @Column(name = "user_name",nullable = false)
     private String userName;
     @Column(name = "password",nullable = false)
     private String password;
-
-    @Column(name = "first_name",nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name",nullable = false)
-    private String lastName;
 
     @Column(name = "email",nullable = false)
     private String email;
@@ -27,8 +29,20 @@ public class UserEntity extends BaseEntity{
     private String created;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Product> products;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public UserEntity() {
+
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public UserEntity setRole(Role role) {
+        this.role = role;
+        return this;
     }
 
     public String getUserName() {
@@ -46,24 +60,6 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public UserEntity setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserEntity setLastName(String lastName) {
-        this.lastName = lastName;
         return this;
     }
 
@@ -95,14 +91,23 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public UserEntity setId(String id) {
+        this.id = id;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "Id=" + getId() +
+        return "UserEntity{" +
+                "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
-                ", firstName='" + firstName +'\'' +
-                ", lastName='" + lastName +'\'' +
+                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", created='" + created + '\'' +
                 '}';
     }
 
@@ -111,11 +116,11 @@ public class UserEntity extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return Objects.equals(userName, that.userName) && Objects.equals(password, that.password) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(created, that.created) && Objects.equals(products, that.products);
+        return Objects.equals(id, that.id) && Objects.equals(userName, that.userName) && Objects.equals(password, that.password) && Objects.equals(email, that.email) && Objects.equals(created, that.created) && Objects.equals(products, that.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, password, firstName, lastName, email, created, products);
+        return Objects.hash(userName, password, email, created, products);
     }
 }

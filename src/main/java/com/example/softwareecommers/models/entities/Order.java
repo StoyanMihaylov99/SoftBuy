@@ -1,16 +1,21 @@
 package com.example.softwareecommers.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "orders")
-public class Order extends BaseEntity {
+public class Order{
+
+    @Id
+    @GeneratedValue(generator = "uuid-string")
+    @GenericGenerator(name = "uuid-string",
+            strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
+
     @Column(name = "customer_id")
     private String customerId;
     @Column(name = "order_date_time")

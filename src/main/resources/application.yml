@@ -1,13 +1,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: '${DB_url}'
-    username: '${DB_username}'
-    password: '${DB_password}'
+    url: "jdbc:mysql://roundhouse.proxy.rlwy.net:55298/softbuy_db"
+    username: root
+    password: ADH2gCcf1GH-hbhG-Fh1-H11AedH1DB3
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
-server:
-  port: 3306
-
