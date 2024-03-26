@@ -31,6 +31,8 @@ public class UserEntity{
     private Set<Product> products;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Column(name = "enabled",nullable = false)
+    private boolean enabled;
 
     public UserEntity() {
 

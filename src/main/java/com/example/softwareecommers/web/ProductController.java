@@ -52,7 +52,7 @@ public class ProductController extends BaseController{
     }
 
 
-    @PostMapping("/{id}")
+   /* @PostMapping("/{id}")
     public ModelAndView addCurrentProduct(@PathVariable("id") String id){
         userServiceImpl.addProduct(productService.getById(id));
         return super.redirect("/cart");
@@ -66,5 +66,7 @@ public class ProductController extends BaseController{
           return super.view("search");
     }
 
+
+    */
 
 }

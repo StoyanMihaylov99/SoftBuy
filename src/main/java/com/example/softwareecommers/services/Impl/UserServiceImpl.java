@@ -1,6 +1,5 @@
 package com.example.softwareecommers.services.Impl;
 
-import com.example.softwareecommers.beans.LoggedUser;
 import com.example.softwareecommers.models.dtos.ProductViewDTO;
 import com.example.softwareecommers.models.dtos.UserEntityDTO;
 import com.example.softwareecommers.models.entities.Product;
@@ -9,6 +8,12 @@ import com.example.softwareecommers.repositories.ProductRepository;
 import com.example.softwareecommers.repositories.UserRepository;
 import com.example.softwareecommers.services.Inter.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,50 +21,34 @@ import java.util.*;
 
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
-    private final LoggedUser loggedUser;
-
-    public UserServiceImpl(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper, LoggedUser loggedUser) {
+    public UserServiceImpl(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
-        this.loggedUser = loggedUser;
     }
 
 
-    public UserEntityDTO registerUser(String userName, String firstName, String lastName, String email, String password) {
-        if (userName == null || password == null) {
-            return null;
-        } else {
-            if (userRepository.findFirstByUserName(userName).isPresent() || userRepository.findByEmail(email).isPresent()) {
-                System.out.println("Duplicate login");
-                return null;
-            }
-            UserEntityDTO user = new UserEntityDTO();
-            user.setUserName(userName);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setPassword(password);
-            user.setEmail(email);
-            user.setCreated(LocalDateTime.now().toString());
 
-            userRepository.saveAndFlush(modelMapper.map(user, UserEntity.class));
-            return user;
-        }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+         UserEntity user = userRepository.findFirstByUserName(username).orElseThrow(() -> new UsernameNotFoundException("User with name " + username + "not found!"));
+        return mapToUserDetails(user);
     }
 
-    public UserEntityDTO authenticate(String userName, String password) {
-        UserEntity authenticatedUser = userRepository.findByUserNameAndPassword(userName, password).orElse(null);
-        if (authenticatedUser != null) {
-            this.loggedUser.setId(authenticatedUser.getId()).setUsername(authenticatedUser.getUserName());
-            return modelMapper.map(authenticatedUser, UserEntityDTO.class);
-        } else {
-            return null;
-        }
+    private static UserDetails mapToUserDetails(UserEntity user){
+        //TODO
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+
+        return new User(user.getUserName(),user.getPassword(),authorities);
     }
+
+    /*
 
     @Override
     public void addProduct(ProductViewDTO productViewDTO) {
@@ -92,10 +81,7 @@ public class UserServiceImpl implements UserService {
 
         return productsToShow;
     }
+    */
 
 
-    @Override
-    public void logout() {
-        this.loggedUser.clear();
-    }
 }

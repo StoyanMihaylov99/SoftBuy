@@ -1,6 +1,6 @@
 package com.example.softwareecommers.services.Impl;
 
-import com.example.softwareecommers.beans.LoggedUser;
+
 import com.example.softwareecommers.models.dtos.OrderDTO;
 import com.example.softwareecommers.models.dtos.ProductViewDTO;
 import com.example.softwareecommers.models.dtos.UserEntityDTO;
@@ -19,20 +19,19 @@ import java.util.Set;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserServiceImpl userServiceImpl;
-    private final LoggedUser loggedUser;
+
     private final UserRepository userRepository;
 
     private final ModelMapper modelMapper;
 
-    public OrderServiceImpl(OrderRepository orderRepository, UserServiceImpl userServiceImpl, LoggedUser loggedUser, UserRepository userRepository, ModelMapper modelMapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, UserServiceImpl userServiceImpl, UserRepository userRepository, ModelMapper modelMapper) {
         this.orderRepository = orderRepository;
         this.userServiceImpl = userServiceImpl;
-        this.loggedUser = loggedUser;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
-    public void save() {
+  /*  public void save() {
         Set<ProductViewDTO> productsForOrder = userServiceImpl.getProductsInCart();
         OrderDTO currentOrder = new OrderDTO();
         OrderDTO orderDTO = currentOrder.setPurchasedProducts(productsForOrder).
@@ -43,4 +42,7 @@ public class OrderServiceImpl implements OrderService {
         user.getProducts().clear();
         userRepository.save(modelMapper.map(user, UserEntity.class));
     }
+
+
+   */
 }

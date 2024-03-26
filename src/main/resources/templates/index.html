@@ -16,15 +16,15 @@
         <input type="submit" value="Search" class="cart-btn"/>
     </form>
 
-
+<!--TODO: navbar logged user-->
     <nav class="navbar">
-        <ul th:if="${@loggedUser.id == null}" class="nav-items">
+        <ul class="nav-items">
             <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
             <li class="nav-item"><a href="/products" class="nav-link">PRODUCTS</a></li>
             <li class="nav-item"><a href="/learning" class="nav-link">E-LEARNING</a></li>
             <li class="nav-item"><a href="/user/register" class="nav-link">SIGN UP</a></li>
         </ul>
-        <ul th:unless="${@loggedUser.id == null}" class="nav-items">
+        <ul class="nav-items">
             <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
             <li class="nav-item"><a href="/products" class="nav-link">PRODUCTS</a></li>
             <li class="nav-item"><a href="/learning" class="nav-link">E-LEARNING</a></li>
@@ -42,17 +42,17 @@
 
 
 <main>
-    <!-- HOME SECTION -->
+    <!-- HOME SECTION TODO:logged user -->
     <section class="container section-1">
         <div class="slogan">
-            <ul th:if="${@loggedUser.id == null}" class="homeslogan">
+            <ul class="homeslogan">
                 <h1 class="company-title">The software you need, where customers come first</h1>
 
             </ul>
 
-            <ul th:unless="${@loggedUser.id == null}" class="homeslogan2">
+            <ul class="homeslogan2">
                 <h1 class="company-title">
-                    Welcome, <span th:text="${@loggedUser.getUsername()}"></span></h1>
+                    Welcome, <span <!--TODO--> ></span></h1>
             </ul>
         </div>
 
