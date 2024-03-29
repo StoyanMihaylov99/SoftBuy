@@ -20,6 +20,23 @@ public class UserController extends BaseController {
     }
 
 
+    @GetMapping("/register")
+    public String getRegister(Model model) {
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(@Valid @ModelAttribute(name = "user") UserEntityDTO user) {
+        userServiceImpl.registerUser(user);
+        return "login";
+    }
+
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
+
 
 
 

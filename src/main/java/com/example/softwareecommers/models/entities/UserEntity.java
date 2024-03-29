@@ -3,7 +3,6 @@ package com.example.softwareecommers.models.entities;
 import com.example.softwareecommers.utils.Role;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +16,8 @@ public class UserEntity{
             strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @Column(name = "user_name",nullable = false)
+
+    @Column(name = "username",nullable = false)
     private String userName;
     @Column(name = "password",nullable = false)
     private String password;
@@ -29,21 +29,43 @@ public class UserEntity{
     private String created;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Product> products;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+
+    private String roles;
     @Column(name = "enabled",nullable = false)
     private boolean enabled;
+    @Column(name = "active")
+    private boolean active;
 
     public UserEntity() {
 
     }
 
-    public Role getRole() {
-        return role;
+
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public UserEntity setRole(Role role) {
-        this.role = role;
+    public UserEntity setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public UserEntity setActive(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public UserEntity setRoles(String role) {
+        this.roles = role;
         return this;
     }
 

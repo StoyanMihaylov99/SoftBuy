@@ -1,29 +1,21 @@
 package com.example.softwareecommers.models.dtos;
-
 import com.example.softwareecommers.models.entities.Product;
-import com.example.softwareecommers.validations.matchingPasswords.PasswordMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
-
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
-@PasswordMatch(password = "password", confirmPassword = "confirmPassword")
 public class UserEntityDTO {
     private String id;
     @Size(min = 3, max = 12, message = "Invalid name")
     private String userName;
     @Size(min = 3,  message = "Invalid password")
     private String password;
-    @Size(min = 3,  message = "Invalid password")
-    private String confirmPassword;
-    @Size(min = 3,  message = "Invalid first Name")
-    private String firstName;
-    @Size(min = 3, message = "Invalid last Name")
-    private String lastName;
     @Email
     private String email;
     private String created;
     private Set<Product> products;
+    private String roles;
 
 
     public UserEntityDTO() {
@@ -47,21 +39,12 @@ public class UserEntityDTO {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getRoles() {
+        return roles;
     }
 
-    public UserEntityDTO setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserEntityDTO setLastName(String lastName) {
-        this.lastName = lastName;
+    public UserEntityDTO setRole() {
+        this.roles = "USER";
         return this;
     }
 
@@ -102,14 +85,6 @@ public class UserEntityDTO {
         return this;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public UserEntityDTO setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-        return this;
-    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,8 +103,6 @@ public class UserEntityDTO {
         return "User{" +
                 "Id=" + getId() +
                 ", userName='" + userName + '\'' +
-                ", firstName='" + firstName +'\'' +
-                ", lastName='" + lastName +'\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
