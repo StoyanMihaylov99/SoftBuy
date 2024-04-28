@@ -5,7 +5,7 @@ A personal project for practicing and learning new skills.
 ## Introduction
 Welcome to TechBuy! This is a web application built using Spring Boot, MySQL, Hibernate, Spring Security, and Docker. It allows users to purchase software products, games, gift cards, or learning courses securely.
 
-https://shorturl.at/bFJQ5
+https://shorturl.at/wzAS5
 
 ## Features
   * User Authentication: Utilizes Spring Security for secure user authentication.
