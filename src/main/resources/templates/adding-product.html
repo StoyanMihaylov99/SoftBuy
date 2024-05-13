@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding product</title>
+    <link rel="stylesheet" type="text/css" href="/css/myCart.css"/>
+</head>
+<body>
+<header>
+    <div class="company-logo">Adding a product</div>
+    <ul class="nav-items">
+        <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
+        <li class="nav-item"><a href="/products" class="nav-link">PRODUCTS</a></li>
+        <form method="POST" th:action="@{/user/logout}" class="nav-link">
+            <button type="submit" name="nav-link" class="nav-link">SIGN OUT</button>
+        </form>
+    </ul>
+</header>
+
+<div class="form">
+    <form th:method="POST" th:action="@{/products/adding}" th:object="${product}">
+        <h1>Product details</h1>
+        <div class="input-box">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="name" placeholder="Title" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true" ></i>
+            <input type="text" name="description" placeholder="Description" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="text" name="price" placeholder="Price" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="text" name="softType" placeholder="Type" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="text" name="owner" placeholder="owner" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="text" name="picUrl" placeholder="Picture Url" required>
+        </div>
+        <div class="input-box">
+            <input type="submit" name="login" value="Add a product">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

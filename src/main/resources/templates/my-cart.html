@@ -26,8 +26,7 @@
                 <h2 th:text="${c.name}" class="product-name"></h2>
                 <p th:text="${c.owner}" class="product-owner"></p>
                 <p th:text="${c.price}" class="product-price"></p>
-                <form th:action="@{'cart/'+ ${c.getId}}" th:method="DELETE">
-                    <input type="hidden" name="_method" value="delete"/>
+                <form th:action="@{'cart/'+ ${c.id}}" method="delete">
                     <button class="add-to-cart" type="submit"> Remove</button>
 
                 </form>

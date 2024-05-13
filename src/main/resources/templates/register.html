@@ -16,31 +16,52 @@
                    placeholder="Username"
                    required minlength="3"
                    maxlength="20">
+            <p th:if="${#fields.hasErrors('userName')}" class="errors alert alert-danger">username must contain 3-20 characters</p>
         </div>
 
         <div class="input-box">
-            <input type="email"
-                   name="email"
-                   placeholder="Email" required>
+            <input type="text"
+                   name="firstName"
+                   placeholder="First name"
+                   required minlength="3"
+                   maxlength="20"
+                   th:value="*{firstName}">
+            <p th:if="${#fields.hasErrors('firstName')}" class="errors alert alert-danger">first name must contain 3-20 characters</p>
         </div>
 
+        <div class="input-box">
+            <input type="text"
+                   name="lastName"
+                   placeholder="Last name"
+                   required minlength="3"
+                   maxlength="20"
+                   th:value="*{lastName}">
+            <p th:if="${#fields.hasErrors('lastName')}" class="errors alert alert-danger">last name must contain 3-20 characters</p>
+        </div>
 
         <div class="input-box">
             <input type="password"
                    name="password"
                    placeholder="Password"
-                   required minlength="3"
-                   maxlength="20" >
+                   th:value="*{password}">
+            <p th:if="${#fields.hasErrors('password')}" class="errors alert alert-danger">Invalid password.</p>
         </div>
 
         <div class="input-box">
             <input type="password"
                    name="ConfirmPassword"
                    placeholder="Confirm Password"
-                   required minlength="3"
-                   maxlength="20" >
+                   th:value="*{confirmPassword}">
+            <p th:if="${#fields.hasErrors('confirmPassword')}" class="errors alert alert-danger">Password miss match.</p>
         </div>
 
+        <div class="input-box">
+            <input type="email"
+                   name="email"
+                   placeholder="Email" required
+                   th:value="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" class="errors alert alert-danger">Email is required.</p>
+        </div>
 
         <div class="input-box">
             <input type="submit" name="sign-up" value="Sign up">

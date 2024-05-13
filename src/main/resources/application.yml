@@ -1,9 +1,11 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://localhost:3306/tech_buy"
+    url: "jdbc:mysql://roundhouse.proxy.rlwy.net:55298/softbuy_db"
     username: root
-    password: 03121977852852QaZ!
+    password: ADH2gCcf1GH-hbhG-Fh1-H11AedH1DB3
   jpa:
     hibernate:
       ddl-auto: update
+server:
+  port: 3306
