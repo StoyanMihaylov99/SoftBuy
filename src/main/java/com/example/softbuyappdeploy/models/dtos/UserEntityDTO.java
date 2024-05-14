@@ -18,10 +18,6 @@ public class UserEntityDTO {
     private String password;
     @Size(min = 3,  message = "Invalid password")
     private String confirmPassword;
-    @Size(min = 3,  message = "Invalid first Name")
-    private String firstName;
-    @Size(min = 3, message = "Invalid last Name")
-    private String lastName;
     @Email
     private String email;
     private String created;
@@ -47,24 +43,6 @@ public class UserEntityDTO {
 
     public UserEntityDTO setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public UserEntityDTO setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserEntityDTO setLastName(String lastName) {
-        this.lastName = lastName;
         return this;
     }
 
@@ -130,17 +108,10 @@ public class UserEntityDTO {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(this.getId(), userName, password, email);
-    }
-
-    @Override
     public String toString() {
         return "User{" +
                 "Id=" + getId() +
                 ", userName='" + userName + '\'' +
-                ", firstName='" + firstName +'\'' +
-                ", lastName='" + lastName +'\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

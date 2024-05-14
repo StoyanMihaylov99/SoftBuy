@@ -5,11 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class OrderDTO {
-
-
     private String customerId;
-
-    private Set<ProductViewDTO> purchasedProducts;
+    private Set<ProductDTO> purchasedProducts;
     private LocalDateTime orderDateTime;
 
     public OrderDTO() {
@@ -24,11 +21,11 @@ public class OrderDTO {
         return this;
     }
 
-    public Set<ProductViewDTO> getPurchasedProducts() {
+    public Set<ProductDTO> getPurchasedProducts() {
         return purchasedProducts;
     }
 
-    public OrderDTO setPurchasedProducts(Set<ProductViewDTO> purchasedProducts) {
+    public OrderDTO setPurchasedProducts(Set<ProductDTO> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
         return this;
     }

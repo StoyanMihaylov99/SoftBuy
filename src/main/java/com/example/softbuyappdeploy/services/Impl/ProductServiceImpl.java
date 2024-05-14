@@ -1,7 +1,7 @@
 package com.example.softbuyappdeploy.services.Impl;
 
 
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 import com.example.softbuyappdeploy.models.entities.Product;
 import com.example.softbuyappdeploy.repositories.ProductRepository;
 import com.example.softbuyappdeploy.services.Inter.ProductService;
@@ -21,41 +21,41 @@ public class ProductServiceImpl implements ProductService {
         this.modelMapper = modelMapper;
     }
 
-    public List<ProductViewDTO> getProductsGames() {
-        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.GAME), ProductViewDTO[].class));
+    public List<ProductDTO> getProductsGames() {
+        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.GAME), ProductDTO[].class));
 
     }
 
-    public List<ProductViewDTO> getProductsSoftware() {
-        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.SOFTWARE), ProductViewDTO[].class));
+    public List<ProductDTO> getProductsSoftware() {
+        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.SOFTWARE), ProductDTO[].class));
 
     }
 
-    public List<ProductViewDTO> getProductsSubscriptions() {
-        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.SUBSCRIPTION), ProductViewDTO[].class));
+    public List<ProductDTO> getProductsSubscriptions() {
+        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.SUBSCRIPTION), ProductDTO[].class));
 
     }
 
-    public List<ProductViewDTO> getProductsCourse() {
-        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.COURSE), ProductViewDTO[].class));
+    public List<ProductDTO> getProductsCourse() {
+        return Arrays.asList(modelMapper.map(productRepository.findProductBySoftType(SoftWareType.COURSE), ProductDTO[].class));
 
     }
 
-    public ProductViewDTO getById(String id){
-        return modelMapper.map(productRepository.findById(id), ProductViewDTO.class);
+    public ProductDTO getById(String id){
+        return modelMapper.map(productRepository.findById(id), ProductDTO.class);
     }
 
-    public List<ProductViewDTO> search(String keyword){
+    public List<ProductDTO> search(String keyword){
         return modelMapper.map(this.productRepository.search(keyword), List.class);
     }
 
-    public String uploadProduct(ProductViewDTO productViewDTO){
-        if(!this.productRepository.findProductByName(productViewDTO.getName()).isEmpty()){
+    public String uploadProduct(ProductDTO productDTO){
+        if(!this.productRepository.findProductByName(productDTO.getName()).isEmpty()){
             return null;
         }
-        productViewDTO.setId(UUID.randomUUID().toString());
-        this.productRepository.save(modelMapper.map(productViewDTO, Product.class));
-        return productViewDTO.getId();
+        productDTO.setId(UUID.randomUUID().toString());
+        this.productRepository.save(modelMapper.map(productDTO, Product.class));
+        return productDTO.getId();
 
     }
 

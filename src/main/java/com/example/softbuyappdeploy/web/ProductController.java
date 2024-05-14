@@ -1,7 +1,7 @@
 package com.example.softbuyappdeploy.web;
 
 
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 import com.example.softbuyappdeploy.services.Impl.ProductServiceImpl;
 import com.example.softbuyappdeploy.services.Impl.UserServiceImpl;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/products")
@@ -75,9 +74,9 @@ public class ProductController extends BaseController{
     }
 
     @PostMapping("/adding")
-    public String uploadProduct(@ModelAttribute(name = "product")ProductViewDTO productViewDTO){
+    public String uploadProduct(@ModelAttribute(name = "product") ProductDTO productDTO){
 
-        return this.productServiceImpl.uploadProduct(productViewDTO) == null ? "upload-error" : "redirect:/";
+        return this.productServiceImpl.uploadProduct(productDTO) == null ? "upload-error" : "redirect:/";
     }
 
     @GetMapping("/delete")
@@ -86,8 +85,8 @@ public class ProductController extends BaseController{
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@ModelAttribute(name = "product")ProductViewDTO productViewDTO){
-        this.productServiceImpl.deleteProduct(productViewDTO.getId());
+    public String delete(@ModelAttribute(name = "product") ProductDTO productDTO){
+        this.productServiceImpl.deleteProduct(productDTO.getId());
         return "index";
     }
 

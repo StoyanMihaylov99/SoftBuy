@@ -2,7 +2,7 @@ package com.example.softbuyappdeploy.beans;
 
 
 
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ public class LoggedUser {
     private String id;
     private String username;
     private String email;
-    private Set<ProductViewDTO> products;
+    private Set<ProductDTO> products;
     private String password;
 
     public LoggedUser() {
@@ -46,13 +46,16 @@ public class LoggedUser {
     public void clear(){
         this.id = null;
         this.username = null;
+        this.products = null;
+        this.email = null;
+        this.password = null;
     }
 
-    public Set<ProductViewDTO> getProducts() {
+    public Set<ProductDTO> getProducts() {
         return products;
     }
 
-    public LoggedUser setProducts(Set<ProductViewDTO> products) {
+    public LoggedUser setProducts(Set<ProductDTO> products) {
         this.products = products;
         return this;
     }

@@ -18,16 +18,8 @@ public class UserEntity extends BaseEntity{
     private String userName;
     @Column(name = "password",nullable = false)
     private String password;
-
-    @Column(name = "first_name",nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name",nullable = false)
-    private String lastName;
-
     @Column(name = "email",nullable = false)
     private String email;
-
     @Column(name = "created",nullable = false)
     private String created;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -54,24 +46,6 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public UserEntity setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserEntity setLastName(String lastName) {
-        this.lastName = lastName;
         return this;
     }
 
@@ -108,18 +82,8 @@ public class UserEntity extends BaseEntity{
         return "User{" +
                 "Id=" + getId() +
                 ", userName='" + userName + '\'' +
-                ", firstName='" + firstName +'\'' +
-                ", lastName='" + lastName +'\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return Objects.equals(userName, that.userName) && Objects.equals(password, that.password) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(created, that.created) && Objects.equals(products, that.products);
     }
 
     public Role getRole() {
@@ -130,8 +94,4 @@ public class UserEntity extends BaseEntity{
         this.role = role;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userName, password, firstName, lastName, email, created, products);
-    }
 }

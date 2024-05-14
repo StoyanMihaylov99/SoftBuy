@@ -3,7 +3,7 @@ package com.example.softbuyappdeploy.services.Impl;
 
 import com.example.softbuyappdeploy.beans.LoggedUser;
 import com.example.softbuyappdeploy.models.dtos.OrderDTO;
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 import com.example.softbuyappdeploy.models.dtos.UserEntityDTO;
 import com.example.softbuyappdeploy.models.entities.Order;
 import com.example.softbuyappdeploy.models.entities.UserEntity;
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public void save() {
-        Set<ProductViewDTO> productsForOrder = userServiceImpl.getProductsInCart();
+        Set<ProductDTO> productsForOrder = userServiceImpl.getProductsInCart();
         OrderDTO currentOrder = new OrderDTO();
         OrderDTO orderDTO = currentOrder.setPurchasedProducts(productsForOrder).
                 setOrderDateTime(LocalDateTime.now()).setCustomerId(loggedUser.getId());

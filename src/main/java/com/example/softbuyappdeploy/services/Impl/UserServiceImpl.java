@@ -2,7 +2,7 @@ package com.example.softbuyappdeploy.services.Impl;
 
 
 import com.example.softbuyappdeploy.beans.LoggedUser;
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 import com.example.softbuyappdeploy.models.dtos.UserEntityDTO;
 import com.example.softbuyappdeploy.models.entities.Product;
 import com.example.softbuyappdeploy.models.entities.UserEntity;
@@ -19,7 +19,6 @@ import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final String PERMISSIONS = "ADMIN";
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
@@ -33,35 +32,16 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public UserEntityDTO registerUser(String userName, String firstName, String lastName, String email, String password, Role role) {
-        if (userName == null || password == null) {
+    public UserEntityDTO registerUser(UserEntityDTO userEntityDTO) {
+        if (userRepository.findByEmail(userEntityDTO.getEmail()).isPresent()) {
             return null;
-        } else {
-            if (userRepository.findFirstByUserName(userName).isPresent() || userRepository.findByEmail(email).isPresent()) {
-                System.out.println("Duplicate login");
-                return null;
-            }
-            UserEntityDTO user = new UserEntityDTO();
-            user.setUserName(userName);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setPassword(password);
-            user.setEmail(email);
-            user.setCreated(LocalDateTime.now().toString());
-
-            if(user.getEmail().contains("@softbuy.com")){
-                user.setRole(Role.ADMIN);
-            } else {
-                user.setRole(Role.USER);
-            }
-
-            userRepository.saveAndFlush(modelMapper.map(user, UserEntity.class));
-            return user;
         }
+        userRepository.saveAndFlush(modelMapper.map(userEntityDTO, UserEntity.class));
+        return userEntityDTO;
     }
 
-    public UserEntityDTO authenticate(String userName, String password) {
-        UserEntity authenticatedUser = userRepository.findByUserNameAndPassword(userName, password).orElse(null);
+    public UserEntityDTO authenticate(UserEntityDTO userEntityDTO) {
+        UserEntity authenticatedUser = userRepository.findByUserNameAndPassword(userEntityDTO.getUserName(), userEntityDTO.getPassword()).orElse(null);
         if (authenticatedUser != null) {
             this.loggedUser.setId(authenticatedUser.getId()).setUsername(authenticatedUser.getUserName()).setEmail(authenticatedUser.getEmail());
             return modelMapper.map(authenticatedUser, UserEntityDTO.class);
@@ -71,31 +51,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addProduct(ProductViewDTO productViewDTO) {
+    public void addProduct(ProductDTO productDTO) {
 
         UserEntityDTO user = modelMapper.map(this.userRepository.findFirstByUserName(loggedUser.getUsername()), UserEntityDTO.class);
-        user.getProducts().add(modelMapper.map(productViewDTO, Product.class));
+        user.getProducts().add(modelMapper.map(productDTO, Product.class));
         userRepository.saveAndFlush(modelMapper.map(user, UserEntity.class));
     }
 
-    public void removeProduct(String id){
+    public void removeProduct(String id) {
         UserEntityDTO user = modelMapper.map(this.userRepository.findFirstByUserName(loggedUser.getUsername()), UserEntityDTO.class);
-        Product productToRemove = modelMapper.map(this.productRepository.findById(id),Product.class);
+        Product productToRemove = modelMapper.map(this.productRepository.findById(id), Product.class);
         user.getProducts().remove(productToRemove);
-        userRepository.save(modelMapper.map(user,UserEntity.class));
+        userRepository.save(modelMapper.map(user, UserEntity.class));
     }
 
 
-    public Set<ProductViewDTO> getProductsInCart() {
-        if(loggedUser.getUsername() == null){
+    public Set<ProductDTO> getProductsInCart() {
+        if (loggedUser.getUsername() == null) {
             return null;
         }
         UserEntityDTO currentUser = modelMapper.map(userRepository.findFirstByUserName(loggedUser.getUsername()), UserEntityDTO.class);
         Set<Product> products = currentUser.getProducts();
-        Set<ProductViewDTO> productsToShow = new LinkedHashSet<>();
+        Set<ProductDTO> productsToShow = new LinkedHashSet<>();
 
         for (Product p : products) {
-            productsToShow.add(this.modelMapper.map(p, ProductViewDTO.class));
+            productsToShow.add(this.modelMapper.map(p, ProductDTO.class));
         }
 
 

@@ -2,17 +2,17 @@ package com.example.softbuyappdeploy.services.Inter;
 
 
 
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
-    List<ProductViewDTO> getProductsGames();
-    List<ProductViewDTO> getProductsSoftware();
-    List<ProductViewDTO> getProductsSubscriptions();
-    List<ProductViewDTO> getProductsCourse();
-    ProductViewDTO getById(String id);
-    String uploadProduct(ProductViewDTO productViewDTO);
+    List<ProductDTO> getProductsGames();
+    List<ProductDTO> getProductsSoftware();
+    List<ProductDTO> getProductsSubscriptions();
+    List<ProductDTO> getProductsCourse();
+    ProductDTO getById(String id);
+    String uploadProduct(ProductDTO productDTO);
     void deleteProduct(String id);
 
 

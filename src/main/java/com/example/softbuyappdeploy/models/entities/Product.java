@@ -3,10 +3,8 @@ package com.example.softbuyappdeploy.models.entities;
 
 import com.example.softbuyappdeploy.utils.SoftWareType;
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "products")

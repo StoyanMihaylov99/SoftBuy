@@ -2,7 +2,7 @@ package com.example.softbuyappdeploy.services.Inter;
 
 
 
-import com.example.softbuyappdeploy.models.dtos.ProductViewDTO;
+import com.example.softbuyappdeploy.models.dtos.ProductDTO;
 import com.example.softbuyappdeploy.models.dtos.UserEntityDTO;
 import com.example.softbuyappdeploy.utils.Role;
 
@@ -10,16 +10,16 @@ import java.util.Set;
 
 public interface UserService {
 
-    UserEntityDTO registerUser(String username, String firstName, String lastName, String email, String password, Role role);
+    UserEntityDTO registerUser(UserEntityDTO userEntityDTO);
 
     void logout();
 
-    void addProduct(ProductViewDTO productViewDTO);
+    void addProduct(ProductDTO productDTO);
     void removeProduct(String id);
 
-    UserEntityDTO authenticate(String userName, String password);
+    UserEntityDTO authenticate(UserEntityDTO userEntityDTO);
 
-    Set<ProductViewDTO> getProductsInCart();
+    Set<ProductDTO> getProductsInCart();
 
 }
 
