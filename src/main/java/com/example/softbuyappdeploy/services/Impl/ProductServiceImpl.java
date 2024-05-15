@@ -41,26 +41,25 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    public ProductDTO getById(String id){
+    public ProductDTO getById(String id) {
         return modelMapper.map(productRepository.findById(id), ProductDTO.class);
     }
 
-    public List<ProductDTO> search(String keyword){
+    public List<ProductDTO> search(String keyword) {
         return modelMapper.map(this.productRepository.search(keyword), List.class);
     }
 
-    public String uploadProduct(ProductDTO productDTO){
-        if(!this.productRepository.findProductByName(productDTO.getName()).isEmpty()){
-            return null;
+    public boolean uploadProduct(ProductDTO productDTO) {
+        if (this.productRepository.findProductByName(productDTO.getName()).isEmpty()) {
+            this.productRepository.save(modelMapper.map(productDTO, Product.class));
+            return true;
         }
-        productDTO.setId(UUID.randomUUID().toString());
-        this.productRepository.save(modelMapper.map(productDTO, Product.class));
-        return productDTO.getId();
+        return false;
 
     }
 
     @Override
-    public void deleteProduct(String id) {
-        this.productRepository.deleteById(id);
+    public void deleteProduct(String name) {
+        this.productRepository.deleteByName(name);
     }
 }

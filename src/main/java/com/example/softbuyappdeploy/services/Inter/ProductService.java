@@ -12,7 +12,7 @@ public interface ProductService {
     List<ProductDTO> getProductsSubscriptions();
     List<ProductDTO> getProductsCourse();
     ProductDTO getById(String id);
-    String uploadProduct(ProductDTO productDTO);
+    boolean uploadProduct(ProductDTO productDTO);
     void deleteProduct(String id);
 
 

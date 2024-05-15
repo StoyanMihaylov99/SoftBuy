@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByEmail(userEntityDTO.getEmail()).isPresent()) {
             return null;
         }
+        userEntityDTO.setCreated(LocalDateTime.now().toString()).setRole(Role.USER);
         userRepository.saveAndFlush(modelMapper.map(userEntityDTO, UserEntity.class));
         return userEntityDTO;
     }
@@ -77,8 +78,6 @@ public class UserServiceImpl implements UserService {
         for (Product p : products) {
             productsToShow.add(this.modelMapper.map(p, ProductDTO.class));
         }
-
-
         return productsToShow;
     }
 

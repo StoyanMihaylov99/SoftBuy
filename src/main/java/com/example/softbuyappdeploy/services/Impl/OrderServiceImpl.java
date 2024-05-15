@@ -32,7 +32,6 @@ public class OrderServiceImpl implements OrderService {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
-
     public void save() {
         Set<ProductDTO> productsForOrder = userServiceImpl.getProductsInCart();
         OrderDTO currentOrder = new OrderDTO();

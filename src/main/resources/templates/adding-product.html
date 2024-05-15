@@ -17,9 +17,9 @@
     </ul>
 </header>
 
-<div class="form">
-    <form th:method="POST" th:action="@{/products/adding}" th:object="${product}">
-        <h1>Product details</h1>
+<div class="upload-form">
+    <form th:method="POST" th:action="@{/products/upload}" th:object="${product}">
+        <h1> Upload Product details</h1>
         <div class="input-box">
             <i class="fa fa-user" aria-hidden="true"></i>
             <input type="text" name="name" placeholder="Title" required>

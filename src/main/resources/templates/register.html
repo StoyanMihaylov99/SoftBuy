@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="form">
+    <!--/*@thymesVar id="userEntityDTO" type=""*/-->
     <form th:method="POST" th:action="@{/user/register}" th:object="${user}">
         <h1>SoftBuy</h1>
         <h2>Sing up</h2>
@@ -15,28 +16,10 @@
                    name="userName"
                    placeholder="Username"
                    required minlength="3"
-                   maxlength="20">
-            <p th:if="${#fields.hasErrors('userName')}" class="errors alert alert-danger">username must contain 3-20 characters</p>
-        </div>
-
-        <div class="input-box">
-            <input type="text"
-                   name="firstName"
-                   placeholder="First name"
-                   required minlength="3"
                    maxlength="20"
-                   th:value="*{firstName}">
-            <p th:if="${#fields.hasErrors('firstName')}" class="errors alert alert-danger">first name must contain 3-20 characters</p>
-        </div>
-
-        <div class="input-box">
-            <input type="text"
-                   name="lastName"
-                   placeholder="Last name"
-                   required minlength="3"
-                   maxlength="20"
-                   th:value="*{lastName}">
-            <p th:if="${#fields.hasErrors('lastName')}" class="errors alert alert-danger">last name must contain 3-20 characters</p>
+            th:value="*{userName}">
+            <p th:if="${#fields.hasErrors('userName')}" class="errors alert alert-danger">username must contain 3-20
+                characters</p>
         </div>
 
         <div class="input-box">
@@ -52,7 +35,8 @@
                    name="ConfirmPassword"
                    placeholder="Confirm Password"
                    th:value="*{confirmPassword}">
-            <p th:if="${#fields.hasErrors('confirmPassword')}" class="errors alert alert-danger">Password miss match.</p>
+            <p th:if="${#fields.hasErrors('confirmPassword')}" class="errors alert alert-danger">Password miss
+                match.</p>
         </div>
 
         <div class="input-box">

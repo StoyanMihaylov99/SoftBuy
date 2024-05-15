@@ -31,8 +31,7 @@ public class CartController extends BaseController {
         model.addAttribute("cartInfo", this.userServiceImpl.getProductsInCart());
         return super.view("my-cart");
     }
-    // Yeah, I know it's a wrong request, but there is some issue with the http request and the front-end part, so I'm leaving it
-    // like this for now (It's working that way) ;)
+
     @GetMapping("/cart/{id}")
     public ModelAndView removeCurrentProduct(@PathVariable String id) {
         this.userServiceImpl.removeProduct(id);

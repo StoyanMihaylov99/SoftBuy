@@ -52,13 +52,11 @@ public class ProductController extends BaseController{
         return super.view("current-product");
     }
 
-
     @PostMapping("/{id}")
     public ModelAndView addCurrentProduct(@PathVariable("id") String id){
         userServiceImpl.addProduct(productServiceImpl.getById(id));
         return super.redirect("/cart");
     }
-
 
     @GetMapping("/search")
     public ModelAndView search(@Param("keyword") String keyword, Model model){
@@ -68,25 +66,25 @@ public class ProductController extends BaseController{
     }
 
 
-    @GetMapping("/adding")
+    @GetMapping("/upload")
     public ModelAndView adding(){
         return super.view("adding-product");
     }
 
-    @PostMapping("/adding")
+    @PostMapping("/upload")
     public String uploadProduct(@ModelAttribute(name = "product") ProductDTO productDTO){
-
-        return this.productServiceImpl.uploadProduct(productDTO) == null ? "upload-error" : "redirect:/";
+        return this.productServiceImpl.uploadProduct(productDTO) ? "index" : "upload-error";
     }
 
+
     @GetMapping("/delete")
-    public ModelAndView deleteRequest(){
+    public ModelAndView getDelete(){
         return super.view("delete-product");
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String delete(@ModelAttribute(name = "product") ProductDTO productDTO){
-        this.productServiceImpl.deleteProduct(productDTO.getId());
+    @DeleteMapping("/delete")
+    public String delete(@ModelAttribute(name = "name") String name){
+        this.productServiceImpl.deleteProduct(name);
         return "index";
     }
 

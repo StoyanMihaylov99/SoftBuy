@@ -37,6 +37,11 @@ public class  UserController extends BaseController {
         return userServiceImpl.registerUser(user) == null ? "error-register" : "redirect:/user/login";
     }
 
+    @ModelAttribute(name = "user")
+    public UserEntityDTO initUserRegister() {
+        return new UserEntityDTO();
+    }
+
 
     @GetMapping("/login")
     public String getLoginPage() {
